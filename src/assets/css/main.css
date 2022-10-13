@@ -21,6 +21,43 @@ a {
 }
 
 
+@media only screen
+and (max-device-width : 768px) {
+    .content-collapse {
+        left: 0;
+    }
+    .content-box {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 70px;
+        bottom: 0;
+        padding-bottom: 30px;
+        -webkit-transition: left .3s ease-in-out;
+        transition: left .3s ease-in-out;
+        background: #f0f0f0;
+    }
+    
+    .content {
+        width: auto;
+        height: 100%;
+        padding: 10px;
+        overflow-y: scroll;
+        box-sizing: border-box;
+    }
+
+    .el-col-8 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    
+
+}
+
+@media only screen
+and (min-device-width : 768px){
+
 .content-box {
     position: absolute;
     left: 250px;
@@ -198,4 +235,5 @@ a {
 
 [hidden]{
     display: none !important;
+}
 }

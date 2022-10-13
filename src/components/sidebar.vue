@@ -54,7 +54,6 @@
 import { computed } from 'vue';
 import { useSidebarStore } from '../store/sidebar';
 import { useRoute } from 'vue-router';
-
 const items = [
 	{
 		icon: 'Odometer',
@@ -134,17 +133,17 @@ const items = [
 		permiss: '14'
 	}
 ];
-
 const route = useRoute();
 const onRoutes = computed(() => {
 	return route.path;
 });
-
 const sidebar = useSidebarStore();
 </script>
 
 <style scoped>
-.sidebar {
+@media only screen
+and (min-device-width : 768px){
+	.sidebar {
 	display: block;
 	position: absolute;
 	left: 0;
@@ -161,4 +160,26 @@ const sidebar = useSidebarStore();
 .sidebar > ul {
 	height: 100%;
 }
+}
+
+@media only screen
+and (max-device-width : 768px) {
+	.sidebar {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 70px;
+	width: 100%;
+	overflow-x: scroll;
+}
+	.el-menu--collapse {
+		display: none;
+	}
+	.sidebar-el-menu:not(.el-menu--collapse) {
+	width: 100%;
+	z-index: 100;
+}
+}
+
+
 </style>

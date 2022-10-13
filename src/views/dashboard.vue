@@ -193,6 +193,28 @@ const todoList = reactive([
 </script>
 
 <style scoped>
+
+@media only screen
+and (max-device-width : 768px) {
+    
+
+    .el-col-8 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+		.el-col-16 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+		.el-col-12 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    
+
+}
+
 .el-row {
 	margin-bottom: 20px;
 }
