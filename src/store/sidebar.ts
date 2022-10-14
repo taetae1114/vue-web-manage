@@ -10,6 +10,7 @@ export const useSidebarStore = defineStore('sidebar', {
 	actions: {
 		handleCollapse() {
 			this.collapse = !this.collapse;
+			
 		}
 	}
 });
