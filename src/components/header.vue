@@ -44,8 +44,9 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, useTransitionState } from 'vue';
 import { useSidebarStore } from '../store/sidebar';
+import { useTransitionStore } from '../store/transition'
 import { useRouter } from 'vue-router';
 import imgurl from '../assets/img/img.jpg';
 
@@ -57,6 +58,16 @@ const sidebar = useSidebarStore();
 const collapseChage = () => {
 	sidebar.handleCollapse();
 };
+
+const transition = useTransitionStore();
+
+if(document.body.clientWidth<758) {
+	transition.handleChange();
+}
+// let transition = false;
+// if (document.body.clientWidth < 758) {
+//   transition = true;
+// }
 
 onMounted(() => {
 	if (document.body.clientWidth < 1500) {

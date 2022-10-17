@@ -32,6 +32,7 @@
 
 <script setup lang="ts">
 import { useTagsStore } from '../store/tags';
+import { useTransitionStore } from '../store/transition'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
@@ -41,6 +42,12 @@ const isActive = (path: string) => {
 };
 
 const tags = useTagsStore();
+
+//判断是否是手机端
+const transition = useTransitionStore();
+let needTransition = transition.$state.transition
+
+
 // 关闭单个标签
 const closeTags = (index: number) => {
 	const delItem = tags.list[index];
@@ -59,7 +66,12 @@ const setTags = (route: any) => {
 		return item.path === route.fullPath;
 	});
 	if (!isExist) {
-		if (tags.list.length >= 8) tags.delTagsItem(0);
+		if(needTransition){
+			if (tags.list.length >= 2) tags.delTagsItem(0);
+		}else{
+			if (tags.list.length >= 8) tags.delTagsItem(0);
+		}
+		// if (tags.list.length >= 8) tags.delTagsItem(0);
 		tags.setTagsItem({
 			name: route.name,
 			title: route.meta.title,
@@ -67,6 +79,7 @@ const setTags = (route: any) => {
 		});
 	}
 };
+
 setTags(route);
 onBeforeRouteUpdate(to => {
 	setTags(to);

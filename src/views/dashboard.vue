@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="transition">
+    <template v-if="needTransition">
       <el-row :gutter="20">
         <el-col :span="24">
           <el-card shadow="hover" class="mgb20" style="height: 252px">
@@ -36,8 +36,8 @@
         </el-col>
         <el-col :span="24">
           <el-row :gutter="20" class="mgb20">
-            <el-col :span="8">
-              <el-card shadow="hover" :body-style="{ padding: '0px' }">
+            <el-col :span="24">
+              <el-card shadow="hover" style="margin-top:20px" :body-style="{ padding: '0px' }">
                 <div class="grid-content grid-con-1">
                   <el-icon class="grid-con-icon"><User /></el-icon>
                   <div class="grid-cont-right">
@@ -47,7 +47,7 @@
                 </div>
               </el-card>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="24">
               <el-card shadow="hover" :body-style="{ padding: '0px' }">
                 <div class="grid-content grid-con-2">
                   <el-icon class="grid-con-icon"><ChatDotRound /></el-icon>
@@ -58,7 +58,7 @@
                 </div>
               </el-card>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="24">
               <el-card shadow="hover" :body-style="{ padding: '0px' }">
                 <div class="grid-content grid-con-3">
                   <el-icon class="grid-con-icon"><Goods /></el-icon>
@@ -114,7 +114,7 @@
           </el-card>
         </el-col>
         <el-col :span="24">
-          <el-card shadow="hover">
+          <el-card shadow="hover" style="margin-top:20px">
             <schart
               ref="line"
               class="schart"
@@ -257,6 +257,7 @@
 import Schart from "vue-schart";
 import { reactive } from "vue";
 import imgurl from "../assets/img/img.jpg";
+import { useTransitionStore } from '../store/transition'
 
 const name = localStorage.getItem("ms_username");
 const role: string = name === "admin" ? "超级管理员" : "普通用户";
@@ -331,10 +332,12 @@ const todoList = reactive([
   },
 ]);
 // console.log(document.body.clientWidth)
-let transition = false;
-if (document.body.clientWidth < 758) {
-  transition = true;
-}
+
+//适配手机端
+const transition = useTransitionStore();
+
+let needTransition = transition.$state.transition
+
 </script>
 
 <style scoped>

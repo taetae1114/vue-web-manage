@@ -25,6 +25,11 @@
 
 <script setup lang="ts" name="basecharts">
 import Schart from 'vue-schart';
+import { useTransitionStore } from '../store/transition'
+
+//判断是否是手机端
+const transition = useTransitionStore();
+let needTransition = transition.$state.transition
 
 const options1 = {
 	type: 'bar',
@@ -123,5 +128,17 @@ const options4 = {
 	margin: 10px 0;
 	font-size: 22px;
 	color: #1f2f3d;
+}
+@media only screen
+and (max-device-width : 768px) {
+	.schart-box {
+	display: inline-block;
+	
+	width: 90%;
+}
+	.schart {
+	width: 100%;
+	height: 400px;
+}
 }
 </style>

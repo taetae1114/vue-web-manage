@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <template v-if="transition">
+    <template v-if="needTransition">
       <el-collapse-transition>
         <el-menu
           v-show="sidebar.collapse"
@@ -143,6 +143,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useSidebarStore } from "../store/sidebar";
+import { useTransitionStore } from '../store/transition'
 import { useRoute } from "vue-router";
 const items = [
   {
@@ -232,10 +233,11 @@ const sidebar = useSidebarStore();
 const collapseChage = () => {
   sidebar.handleCollapse();
 };
-let transition = false;
-if (document.body.clientWidth < 758) {
-  transition = true;
-}
+
+const transition = useTransitionStore();
+
+let needTransition = transition.$state.transition
+
 </script>
 
 <style scoped>
