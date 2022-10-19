@@ -11,8 +11,8 @@
 				<el-button type="primary" :icon="Plus">新增</el-button>
 			</div>
 			<el-table :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
-				<el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
-				<el-table-column prop="name" label="用户名"></el-table-column>
+				<el-table-column fixed prop="id" label="ID" width="55" align="center"></el-table-column>
+				<el-table-column fixed prop="name" label="用户名"></el-table-column>
 				<el-table-column label="账户余额">
 					<template #default="scope">￥{{ scope.row.money }}</template>
 				</el-table-column>
@@ -50,6 +50,21 @@
 						</el-button>
 					</template>
 				</el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				<el-table-column></el-table-column>
+				
+
+
 			</el-table>
 			<div class="pagination">
 				<el-pagination
@@ -111,6 +126,9 @@ const getData = () => {
 	fetchData().then(res => {
 		tableData.value = res.data.list;
 		pageTotal.value = res.data.pageTotal || 50;
+		console.log("tableData:",tableData.value)
+		console.log("pageTotal:",pageTotal.value)
+
 	});
 };
 getData();
